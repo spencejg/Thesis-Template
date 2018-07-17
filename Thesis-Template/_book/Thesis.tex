@@ -34,6 +34,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb,amsthm}
 \usepackage{longtable,booktabs,setspace}
+% To set double spacing
+\doublespacing
 \usepackage{chemarr} %% Useful for one reaction arrow, useless if you're not a chem major
 \usepackage[hyphens]{url}
 % Added by CII
@@ -82,6 +84,7 @@
 \degree{Doctor of Philosophy}
 \degreeshort{Ph.D.}
 \education{M.A.}
+\educationlong{M.A. (University of Cool); B.A. (Univeristy of Awesome)}
 \month{July}
 \year{2000}
 \city{Hamilton}
@@ -133,6 +136,22 @@ Second paragraph of abstract starts here. This is cool.
 \Acknowledgements{
 This is the Acknowledgements y'all
 }
+
+
+\Abbreviations{
+This is to list all of the commonly used abbreviations and symbols that
+are found throughout the dissertation.
+\begin{itemize}
+\tightlist
+\item
+  ABD: All But Dissertation
+\item
+  DMV: Department of Motor Vehicles
+\item
+  TLC: The Learning Channel
+\end{itemize}
+}
+
 
 \Declaration{
 \label{doaac} This is the declaration of academic achievement y'all
@@ -198,6 +217,20 @@ This is the Acknowledgements y'all
 
   \listoffigures
   \thispagestyle{plain}
+  \begin{abbreviations}
+    This is to list all of the commonly used abbreviations and symbols that
+    are found throughout the dissertation.
+    \begin{itemize}
+    \tightlist
+    \item
+      ABD: All But Dissertation
+    \item
+      DMV: Department of Motor Vehicles
+    \item
+      TLC: The Learning Channel
+    \end{itemize}
+    \thispagestyle{plain}
+  \end{abbreviations}
   \begin{declaration}
     \label{doaac} This is the declaration of academic achievement y'all
     \thispagestyle{plain}

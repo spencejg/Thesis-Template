@@ -213,6 +213,9 @@
 %LEVEL OF CURRENT EDUCATION
 \def\education#1{\gdef \@education{#1}}
 \def\@education{\@latex@warning@no@line{No \noexpand\education given}}
+%ALL PREVIOUS POST SECONDARY DEGREES
+\def\educationlong#1{\gdef \@educationlong{#1}}
+\def\@educationlong{\@latex@warning@no@line{No \noexpand\educationlong given}}
 %MONTH OF SUBMISSION
 \def\month#1{\gdef \@month{#1}}
 \def\@month{\@latex@warning@no@line{No \noexpand\month given}}
@@ -285,6 +288,16 @@
     \@restonecolfalse
   \fi
   \chapter*{Abstract}
+  \fontsize{12}{14}\selectfont
+}{\clearpage \if@restonecol\twocolumn\fi}%
+
+\newenvironment{abbreviations}{%
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse
+  \fi
+  \chapter*{List of Abbreviations and Symbols}
   \fontsize{12}{14}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
@@ -391,7 +404,8 @@
   TITLE: \@title \\
   \\
   \noindent
-  AUTHOR: \@author \\
+  AUTHOR: \@author ,\  \\
+  \indent\indent \,\,\,\,\,\,\,\,\, \@educationlong \\
   \\
   \noindent
   ADVISOR: \@advisor \\
@@ -424,4 +438,5 @@
 \newcommand{\Layabstract}[1]{\def\@Layabstract{#1}}
 \newcommand{\Abstract}[1]{\def\@Abstract{#1}}
 \newcommand{\Acknowledgements}[1]{\def\@Acknowledgements{#1}}
+\newcommand{\Abbreviations}[1]{\def\@Abbreviations{#1}}
 \newcommand{\Declaration}[1]{\def\@Declaration{#1}}

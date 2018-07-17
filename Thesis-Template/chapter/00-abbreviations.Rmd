@@ -1,0 +1,5 @@
+This is to list all of the commonly used abbreviations and symbols that are found throughout the dissertation.
+
+- ABD: All But Dissertation
+- DMV: Department of Motor Vehicles
+- TLC: The Learning Channel

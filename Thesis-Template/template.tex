@@ -34,6 +34,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb,amsthm}
 \usepackage{longtable,booktabs,setspace}
+% To set double spacing
+\doublespacing
 \usepackage{chemarr} %% Useful for one reaction arrow, useless if you're not a chem major
 \usepackage[hyphens]{url}
 % Added by CII
@@ -82,6 +84,7 @@
 \degree{$degree$}
 \degreeshort{$degreeshort$}
 \education{$education$}
+\educationlong{$educationlong$}
 \month{$month$}
 \year{$year$}
 \city{$city$}
@@ -135,6 +138,12 @@ $abstract$
 \Acknowledgements{
 $acknowledgements$
 }
+
+
+\Abbreviations{
+$abbreviations$
+}
+
 
 \Declaration{
 $declaration$
@@ -203,6 +212,13 @@ $endif$
 $if(lof)$
   \listoffigures
   \thispagestyle{plain}
+$endif$
+
+$if(abbreviations)$
+  \begin{abbreviations}
+    $abbreviations$
+    \thispagestyle{plain}
+  \end{abbreviations}
 $endif$
 
 $if(declaration)$

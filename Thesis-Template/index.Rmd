@@ -30,6 +30,8 @@ degreeshort: |
   `r if(knitr:::is_latex_output()) paste(readLines("prelim/degreeshort.txt"), collapse = '\n  ')`
 education: |
   `r if(knitr:::is_latex_output()) paste(readLines("prelim/education.txt"), collapse = '\n  ')`
+educationlong: |
+  `r if(knitr:::is_latex_output()) paste(readLines("prelim/educationlong.txt"), collapse = '\n  ')`
 year: |
   `r if(knitr:::is_latex_output()) paste(readLines("prelim/year.txt"), collapse = '\n  ')`
 month: |
@@ -49,6 +51,8 @@ abstract: |
   `r if(knitr:::is_latex_output()) paste(readLines("chapter/00-abstract.Rmd"), collapse = '\n  ')`
 acknowledgements: |
   `r if(knitr:::is_latex_output()) paste(readLines("chapter/00-acknowledgements.Rmd"), collapse = '\n  ')`
+abbreviations: |
+  `r if(knitr:::is_latex_output()) paste(readLines("chapter/00-abbreviations.Rmd"), collapse = '\n  ')`
 declaration: |
   `r if(knitr:::is_latex_output()) paste(readLines("chapter/00-declaration.Rmd"), collapse = '\n  ')`
   
