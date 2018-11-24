@@ -446,11 +446,12 @@
 % Custom command for easily inputing figures into a chapter
 %	Note: this will allow for pandoc to properly name all figures
 %	Usage: \figure{<name>}{<Top caption>}{<Bottom caption>}{<desired width>}
-\newcommand{\addfigure}[4]{
+\newcommand{\addfigure}[5]{
 	\begin{figure}
-	\caption{#2}
-	\centering
-	\includegraphics[width=#4\textwidth]{"#1"}
-	\caption*{#3}
+	  \caption{#2}
+	  \centering
+	  \includegraphics[width=#4\textwidth]{"#1"}
+	  \caption*{#3}
+	  \label{#5}
 	\end{figure}
 }

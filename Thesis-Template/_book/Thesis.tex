@@ -171,11 +171,10 @@ are found throughout the dissertation.
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
 \newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
 \theoremstyle{definition}
 \newtheorem{example}{Example}[chapter]
 \theoremstyle{definition}
@@ -321,11 +320,6 @@ generated that includes both content as well as the output of any
 embedded \textbf{R} code chunks within the document. You can embed an
 \textbf{R} code chunk like this (\texttt{cars} is a built-in \textbf{R}
 dataset):
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
 \begin{verbatim}
      speed           dist       
  Min.   : 4.0   Min.   :  2.00  
@@ -395,28 +389,14 @@ values. Merges were also done with the \texttt{airports} and
 more descriptive airport and airline names.
 
 We can load in this data set using the following command:
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+
 The data is now stored in the data frame called \texttt{flights} in
 \textbf{R}. To get a better feel for the variables included in this
 dataset we can use a variety of functions. Here we can see the
 dimensions (rows by columns) and also the names of the columns.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{dim}\NormalTok{(flights)}
-\end{Highlighting}
-\end{Shaded}
 \begin{verbatim}
 [1] 52808    16
 \end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(flights)}
-\end{Highlighting}
-\end{Shaded}
 \begin{verbatim}
  [1] "month"        "day"          "dep_time"     "dep_delay"   
  [5] "arr_time"     "arr_delay"    "carrier"      "tailnum"     
@@ -428,11 +408,7 @@ this dataset having more than 50,000 rows, we won't explicitly show the
 results of the command here. I recommend you enter the command into the
 Console \textbf{\emph{after}} you have run the \textbf{R} chunks above
 to load the data into \textbf{R}.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{View}\NormalTok{(flights)}
-\end{Highlighting}
-\end{Shaded}
+
 While not required, it is highly recommended you use the \texttt{dplyr}
 package to manipulate and summarize your data set as needed. It uses a
 syntax that is easy to understand using chaining operations. Below I've
@@ -443,21 +419,7 @@ academic visuals.
 
 We begin by checking to ensure that needed packages are installed and
 then we load them into our current working environment:
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# List of packages required for this analysis}
-\NormalTok{pkg <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"bookdown"}\NormalTok{, }\StringTok{"devtools"}\NormalTok{)}
-\CommentTok{# Check if packages are not installed and assign the}
-\CommentTok{# names of the packages not installed to the variable new.pkg}
-\NormalTok{new.pkg <-}\StringTok{ }\NormalTok{pkg[}\OperatorTok{!}\NormalTok{(pkg }\OperatorTok{%in%}\StringTok{ }\KeywordTok{installed.packages}\NormalTok{())]}
-\CommentTok{# If there are any packages in the list that aren't installed,}
-\CommentTok{# install them}
-\ControlFlowTok{if}\NormalTok{ (}\KeywordTok{length}\NormalTok{(new.pkg))}
-  \KeywordTok{install.packages}\NormalTok{(new.pkg, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-\CommentTok{# Load packages (thesisdown will load all of the packages as well)}
-\KeywordTok{library}\NormalTok{(thesisdown)}
-\end{Highlighting}
-\end{Shaded}
+
 \clearpage
 
 The example we show here does the following:
@@ -470,15 +432,6 @@ The example we show here does the following:
   Using \texttt{flights2}, we determine the largest arrival delay for
   each of the carriers.
 \end{itemize}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights2 <-}\StringTok{ }\NormalTok{flights }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(carrier_name, arr_delay)}
-\NormalTok{max_delays <-}\StringTok{ }\NormalTok{flights2 }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier_name) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{max_arr_delay =} \KeywordTok{max}\NormalTok{(arr_delay, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 A useful function in the \texttt{knitr} package for making nice tables
 in \emph{R Markdown} is called \texttt{kable}. It is much easier to use
 than manually entering values into a table by copying and pasting values
@@ -487,17 +440,7 @@ documents can be! (Note the use of \texttt{results="asis"}, which will
 produce the table instead of the code to create the table.) The
 \texttt{caption.short} argument is used to include a shorter title to
 appear in the List of Tables.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{kable}\NormalTok{(max_delays, }
-      \DataTypeTok{col.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"Airline"}\NormalTok{, }\StringTok{"Max Arrival Delay"}\NormalTok{),}
-      \DataTypeTok{caption =} \StringTok{"Maximum Delays by Airline"}\NormalTok{,}
-      \DataTypeTok{caption.short =} \StringTok{"Max Delays by Airline"}\NormalTok{,}
-      \DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{,}
-      \DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{longtable}{lr}
+\begin{longtable}[t]{lr}
 \caption[Max Delays by Airline]{\label{tab:maxdelays}Maximum Delays by Airline}\\
 \toprule
 Airline & Max Arrival Delay\\
@@ -522,14 +465,8 @@ We can further look into the properties of the largest value here for
 American Airlines Inc. To do so, we can isolate the row corresponding to
 the arrival delay of 1539 minutes for American in our original
 \texttt{flights} dataset.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(arr_delay }\OperatorTok{==}\StringTok{ }\DecValTok{1539}\NormalTok{, }
-\NormalTok{                  carrier_name }\OperatorTok{==}\StringTok{ "American Airlines Inc."}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(month, day, carrier, dest_name, hour, }
-\NormalTok{            minute, carrier_name, arr_delay))}
-\end{Highlighting}
-\end{Shaded}
+
+Can we reference this table \ref{tab:maxdelays}.
 \begin{verbatim}
   dep_time dep_delay arr_time tailnum flight dest air_time distance
 1     1403      1553     1934  N595AA   1568  DFW      182     1616
@@ -538,12 +475,7 @@ We see that the flight occurred on March 3rd and departed a little after
 2 PM on its way to Dallas/Fort Worth. Lastly, we show how we can
 visualize the arrival delay of all departing flights from Portland on
 March 3rd against time of departure.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{, day }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_time, }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+
 \includegraphics{Thesis_files/figure-latex/march3plot-1.pdf}
 
 \section{Additional resources}\label{additional-resources}
@@ -561,6 +493,159 @@ March 3rd against time of departure.
   \texttt{ggplot2} Documentation -
   \url{http://docs.ggplot2.org/current/}
 \end{itemize}
+\section{How to include numbering to figures and
+tables}\label{how-to-include-numbering-to-figures-and-tables}
+
+\subsection{Figures}\label{figures}
+
+Starting with numbering for figures that were generated outside of your
+thesis markdown file (though this goes against reproduceability) we can
+use a latex command \texttt{\textbackslash{}addfigure} which is unique
+to this template. There are five arguments as follows:
+\texttt{\textbackslash{}addfigure\{\textless{}name\textgreater{}\}\{\textless{}Top\ caption\textgreater{}\}\{\textless{}Bottom\ caption\textgreater{}\}\{\textless{}size\ usually\ use\ 0.8\textgreater{}\}\{\textless{}label\textgreater{}\}}.
+The label number will appear at the top and if you do not want a caption
+or a label then leave then blank. Keep in mind that you must fill in the
+file name, and size so that at a bare minimum the command will be
+\texttt{\textbackslash{}addfigure\{filename\}\{\}\{\}\{0.8\}\{\}}. I
+have generated a plot showing eruptions and wait times from Old Faithful
+and saved it as a .png file in the \emph{figure} directory. I have used
+the \texttt{\textbackslash{}addfigure} command to include it
+below.\footnote{If you want to see how
+  \texttt{\textbackslash{}addfigure} was created visit, but do not
+  alter, \emph{Mactemplate.cls}.}
+
+\addfigure{figure/Faithful}{Old Faithful}{Plotting eruptions and waiting for old faithful}{0.8}{faithfig}
+
+So now we can reference our Old Faithful figure as Figure
+\ref{faithfig}. Notice that the way in which we have to reference
+figures from the \texttt{\textbackslash{}addfigure} command, or more
+specifically from any \LaTeX command is
+\texttt{\textbackslash{}ref\{\textless{}label\textgreater{}\}} whereas
+normally throughout markdown we use
+\texttt{\textbackslash{}@ref(fig:\textless{}label\textgreater{})} and
+\texttt{\textbackslash{}ref(tab:\textless{}label\textgreater{})} for
+figures and tables, respectively.
+
+Now let's do the same thing but considering reproduceability where we
+will generate the Old Faithful plot within an R chunk. Notice in the
+header of the chunk we first state that we are using R and then we give
+this chunk, which is dedicated to generating our plot, a label from
+which we can reference the figure later in our document.
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{Thesis_files/figure-latex/faithfulfig-1} 
+
+}
+
+\caption{Plot for Old Faithful}\label{fig:faithfulfig}
+\end{figure}
+Now let's reference this figure as Figure \ref{fig:faithfulfig}. Notice
+though that you must include a \emph{fig.cap} in the chunk header for it
+to be given a table number.
+
+IMPORTANT: When you give a table or a figure a label, it MUST be
+alphanumeric with not underscores or spaces!
+
+Clearly the second method of includeing figures is ideal however if you
+generate figures in other programs or from data centres where you can
+only take an image of the plot then the first where you use
+\texttt{\textbackslash{}addfigure} will work well. Just to make things
+more confusing, you should have noticed that you reference using
+\texttt{\textbackslash{}@ref()} or \texttt{\textbackslash{}ref\{\}}, be
+careful.
+
+\subsection{Tables}\label{tables}
+
+Now for a table that is generated using the basic markdown table
+generation.
+\begin{longtable}[]{@{}ccc@{}}
+\caption{\label{tab:inhertable} Correlation of Inheritance Factors for
+Parents and Child}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.29\columnwidth}\centering\strut
+Factors\strut
+\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\centering\strut
+Correlation between Parents \& Child\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering\strut
+Inherited\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.29\columnwidth}\centering\strut
+Factors\strut
+\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\centering\strut
+Correlation between Parents \& Child\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\centering\strut
+Inherited\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.29\columnwidth}\centering\strut
+Education\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\centering\strut
+-0.49\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+Yes\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering\strut
+Socio-Economic Status\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\centering\strut
+0.28\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+Slight\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering\strut
+Income\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\centering\strut
+0.08\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+No\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering\strut
+Family Size\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\centering\strut
+0.18\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+Slight\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\centering\strut
+Occupational Prestige\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\centering\strut
+0.21\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\centering\strut
+Slight\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+So to reference the table we just add Table \ref{tab:inhertable} and
+then you can reference tables.
+
+If we want to use the \emph{kable} library we can also easily label and
+reference tables.
+\begin{longtable}[t]{lr}
+\caption[Max Delays by Airline]{\label{tab:flightdelay}Maximum Delays by Airline}\\
+\toprule
+Airline & Max Arrival Delay\\
+\midrule
+Alaska Airlines Inc. & 338\\
+American Airlines Inc. & 1539\\
+Delta Air Lines Inc. & 651\\
+Frontier Airlines Inc. & 575\\
+Hawaiian Airlines Inc. & 407\\
+\addlinespace
+JetBlue Airways & 273\\
+SkyWest Airlines Inc. & 421\\
+Southwest Airlines Co. & 694\\
+United Air Lines Inc. & 472\\
+US Airways Inc. & 347\\
+Virgin America & 366\\
+\bottomrule
+\end{longtable}
+Can we reference this table \ref{tab:flightdelay}. I'm sure many will
+use \emph{stargazer} which is a \LaTeX command. Be sure to include the
+label option and then you can reference your regression output easily.
+
 \hypertarget{math-sci}{\chapter{Mathematics and
 Science}\label{math-sci}}
 
@@ -693,7 +778,7 @@ read the proceeding chapter on graphics and tables.
 
 \chapter{Tables, Graphics, References, and Labels}\label{ref-labels}
 
-\section{Tables}\label{tables}
+\section{Tables}\label{tables-1}
 
 In addition to the tables that can be automatically generated from a
 data frame in \textbf{R} that you saw in
@@ -777,7 +862,7 @@ appear anywhere throughout the document after the table has appeared.
 
 \clearpage
 
-\section{Figures}\label{figures}
+\section{Figures}\label{figures-1}
 
 If your thesis has a lot of figures, \emph{R Markdown} might behave
 better for you than that other word processor. One perk is that it will
@@ -796,11 +881,6 @@ of ``McMaster logo'', the label of ``mcmasterlogo'', and specify that
 this is a figure. Make note of the different \textbf{R} chunk options
 that are given in the R Markdown file (not shown in the knitted
 document).
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{include_graphics}\NormalTok{(}\DataTypeTok{path =} \StringTok{"figure/mcmaster.jpg"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 \begin{figure}
 
 {\centering \includegraphics[width=0.5\linewidth]{figure/mcmaster} 
@@ -824,14 +904,6 @@ shown a different way to reference a section or chapter here.) We will
 next explore a bar graph with the mean flight departure delays by
 airline from Portland for 2014. Note also the use of the \texttt{scale}
 parameter which is discussed on the next page.
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(carrier) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_dep_delay =} \KeywordTok{mean}\NormalTok{(dep_delay)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier, }\DataTypeTok{y =}\NormalTok{ mean_dep_delay)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{position =} \StringTok{"identity"}\NormalTok{, }\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 \begin{figure}
 
 {\centering \includegraphics{Thesis_files/figure-latex/delaysboxplot-1} 

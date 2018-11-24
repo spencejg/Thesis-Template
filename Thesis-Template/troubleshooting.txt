@@ -16,7 +16,6 @@ Execution halted
 
 #When you have an error in the code it will develop temporary files such as "Thesis.Rmd" however you have to delete these temporary files before knitting again. For example, if you input an equation with an error, such as forgetting a close bracket, then the file will not compile, however you can check the temporary file named "Thesis.log" which will tell you where the error lies. The console will often tell you what the latex error is but not where it is.
 
-# This error of duplicate files also appears in Yihui Xie's basic bookdown example, even his minimal bookdown example. Not sure how to proceed.
 
 # If you alter "template.tex" or "Mactemplate.cls" then you could cause a similar error but errors in these files are harder to correct so I recommend that you do not alter them.
 
