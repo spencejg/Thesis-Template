@@ -1,3 +1,16 @@
+% Mactemplate.cls version "20181202"
+%
+%
+% Modified by James Spencer.
+%
+%
+%
+%
+%
+%
+%
+%
+%
 %
 % This file is copyright (C) 2003 Sam Noble. It may be modified so long
 % as my name is not removed and the modifier adds his name to the file.

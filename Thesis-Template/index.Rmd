@@ -1,3 +1,5 @@
+<!-- index.Rmd version "20181202" -->
+
 ---
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
